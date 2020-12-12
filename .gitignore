@@ -1,0 +1,9 @@
+# virtualenv
+venv/
+__pycache__/
+
+# JavaScript
+node_modules/
+
+# Editor cache
+.idea/
