@@ -42,4 +42,4 @@ console.log('0/1 KP problem\nitems =', items, ', W =', W, '\nres = ', zeroAllKP(
 items = [{weight: 10, value: 60}, {weight: 20, value: 100}, {weight: 30, value: 120}];
 W = 50;
 // https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/?ref=lbp
-console.log('0/1 KP problem\nitems =', items, ', W =', W, '\nres = ', zeroAllKP(items, W));
+console.log('items =', items, ', W =', W, '\nres = ', zeroAllKP(items, W));
