@@ -1,7 +1,7 @@
 // Chapter -
 // Chapter 3
 
-// 0/1 KP
+// 0/1 KP = nW
 // input: items = {value, weight}, W = max weight of package
 // output: maximum profit
 const zeroAllKP = (items, W) => {
@@ -9,7 +9,7 @@ const zeroAllKP = (items, W) => {
   const numberOfItems = items.length + 1;
 
   // init c
-  for (let i = 0; i < numberOfItems; i++) {
+  for (let i = 0; i < numberOfItems; i++) { // n
     const row = new Array(W+1);
     if (i === 0) {
       row.fill(0);
@@ -18,7 +18,7 @@ const zeroAllKP = (items, W) => {
   }
 
   // fill table c
-  for (let i = 1; i < numberOfItems; i++) {
+  for (let i = 1; i < numberOfItems; i++) { // nW
     c[i][0] = 0;
     for (let k = 0; k < W+1; k++) {
       const { value, weight } = items[i-1];
@@ -36,4 +36,5 @@ const zeroAllKP = (items, W) => {
 
 const items = [{weight: 4, value: 45}, {weight: 5, value: 57}, {weight: 2, value: 22.5}, {weight: 1, value: 11}, {weight: 6, value: 67}];
 const W = 8;
+// http://www2.lssh.tp.edu.tw/~hlf/class-1/lang-c/kp.htm
 console.log('0/1 KP problem\nitems =', items, ', W =', W, '\nres = ', zeroAllKP(items, W));
