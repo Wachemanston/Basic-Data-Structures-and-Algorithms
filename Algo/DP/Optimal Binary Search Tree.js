@@ -37,7 +37,7 @@ const OptimalBST = (items) => {
     }
   }
 
-  console.log(q, m);
+  // console.log(q, m);
   return m[0][items.length - 1] + q[0][items.length - 1];
 };
 
