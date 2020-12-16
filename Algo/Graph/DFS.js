@@ -9,52 +9,46 @@ const DFS = (G, s) => {
   const V = G.length;
   const d = new Array(V);
   const f = new Array(V);
-  d[s] = counter;
   const predecessor = new Array(V);
 
-  // use queue to implement DFS
-  let stack = [s];
-  while (stack.length) {
-    const i = stack.pop();
-    const arr = [];
+  const recursiveDFS = (i) => {
+    d[i] = counter++;
     for (let neighbor = 0;  neighbor < V; neighbor++) {
       if (G[i][neighbor] && d[neighbor] === undefined) {
-        d[neighbor] = ++counter;
         predecessor[neighbor] = i;
-        arr.push(neighbor);
+        recursiveDFS(neighbor);
       }
     }
-    arr.reverse();
-    stack = stack.concat(arr);
-    f[i] = ++counter;
-    // console.log(stack, arr)
-    // if (stack.length === 0) {
-    //   for (let j = 0; j < V; j++) {
-    //     if (d[j] === undefined) {
-    //       stack.push(j);
-    //       break;
-    //     }
-    //   }
-    // }
+    f[i] = counter++;
+  };
+
+  // resolve assigned start point
+  recursiveDFS(s);
+
+  // check other connected component
+  for (let i = 0; i < V; i++) {
+    if (d[i] === undefined) {
+      recursiveDFS(i);
+    }
   }
 
   return {d, f, predecessor};
 };
 
 let G = [
-  [0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+  [0, 0, 1, 1, 0, 0, 1, 0, 0, 0],
+  [0, 0, 0, 0, 1, 0, 0, 0, 1, 0],
+  [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+  [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
 ];
 let s = 0;
-// Introduction to Algorithm [p. 607, 22.5(c)], [p. 611, 22.6]
+// Introduction to Algorithm [p. 611, 22.6], [p. 607, 22.5(c)]
 console.log('DFS\nG =', G, 's =', s, '\nres = ', DFS(G, s));
 
 G = [
