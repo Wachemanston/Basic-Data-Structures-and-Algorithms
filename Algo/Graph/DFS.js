@@ -1,7 +1,7 @@
 // Chapter 15
-// Chapter -
+// Chapter 4
 
-// BFS = V + E
+// DFS = V + E
 // input: G, start point s
 // output: discover time & predecessor for v in G
 const DFS = (G, s) => {
