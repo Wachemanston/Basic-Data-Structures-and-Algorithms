@@ -1,5 +1,5 @@
-// Chapter 22
-// Chapter 4
+// Chapter 23
+// Chapter -
 
 // Kruskal = ElgE + ElgV ~= ElgE
 // input: G = G[i]: list of {e: edge destination, w: weight}
