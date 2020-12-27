@@ -1,5 +1,5 @@
 // Chapter 23
-// Chapter
+// Chapter -
 
 // Prim = VlgV + ElgV ~= ElgV
 // input: G = G[i]: list of {e: edge destination, w: weight}
