@@ -8,18 +8,23 @@ const INF = Infinity;
 
 const BellmanFord = (G, s) => {
   const V = G.length;
+  const E = [];
   const dist = new Array(V);
   dist.fill(INF);
   dist[s] = 0;
 
-  const relax = (p) => {
-    for (let k = 0; k < V; k++) // <- 應檢查有無邊再 relax，才能使 iteration = O(E)
-      dist[p] = Math.min(dist[p], dist[k] + G[k][p]);
+  for (let i = 0; i < V-1; i++)
+    for (let j = 0; j < V; j++)
+      if (G[i][j] !== INF)
+        E.push([i, j]);
+
+  const relax = ([u, v]) => {
+    dist[v] = Math.min(dist[v], dist[u] + G[u][v]);
   };
 
   for (let i = 0; i < V-1; i++) { // V
-    for (let j = 0; j < V; j++) {
-      relax(j);
+    for (let j = 0; j < E.length; j++) { // E
+      relax(E[j]);
     }
     // console.log(dist.map(v => v === INF ? 'INF' : v));
   }
