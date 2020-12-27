@@ -8,11 +8,9 @@ const INF = Infinity // Number.MAX_VALUE;
 
 const BellmanFord = (G, s) => {
   const V = G.length;
-  const knownVertex = new Set();
   const dist = new Array(V);
   dist.fill(Number.MAX_VALUE);
   dist[s] = 0;
-  knownVertex.add(s);
 
   const relax = (p) => {
     for (let k = 0; k < V; k++)
@@ -20,18 +18,8 @@ const BellmanFord = (G, s) => {
   };
 
   for (let i = 0; i < V-1; i++) {
-    const l = knownVertex.size;
-    const iterator = knownVertex.values();
-    for (let j = 0; j < l; j++) {
-      const p = iterator.next().value;
-      relax(p);
-      if (l < V) {
-        for (let k = 0; k < V; k++) {
-          if (G[p][k] !== INF) {
-            knownVertex.add(k);
-          }
-        }
-      }
+    for (let j = 0; j < V; j++) {
+      relax(j);
     }
     // console.log(dist.map(v => v === INF ? 'INF' : v));
   }
