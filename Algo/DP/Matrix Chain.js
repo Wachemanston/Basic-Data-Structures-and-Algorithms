@@ -17,9 +17,9 @@ const MatrixChain = (dimensions) => {
   }
 
   // fill the table m
-  for (let l = 2; l <= dimensionsLength; l++) { // n
-    for (let i = 0; i < dimensionsLength - l + 1; i++) { // n
-      const j = i+l-1;
+  for (let l = 1; l <= dimensionsLength; l++) { // n
+    for (let i = 0; i < dimensionsLength - l; i++) { // n
+      const j = i+l;
       for (let k = i+1; k < j+1; k++) { // n
         m[i][j] = Math.min(m[i][j], m[i][k-1] + m[k][j] + dimensions[i] * dimensions[k] * dimensions[j+1])
       }
